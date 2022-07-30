@@ -86,7 +86,6 @@ const formatMovmentDate = function (date, locale) {
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
   const daysPassed = calcDaysPassed(new Date(), date);
-  console.log(daysPassed);
   if (daysPassed === 0) return "Today";
   if (daysPassed === 1) return "Yesterday";
   if (daysPassed <= 7) return `${daysPassed} days ago`;
@@ -225,6 +224,8 @@ btnLogin.addEventListener("click", function (e) {
   currentAccount = accounts.find(
     (acc) => acc.username === inputLoginUsername.value
   );
+
+  if (currentAccount.movements.at(-1) == null) currentAccount.movements.pop();
   console.log(currentAccount);
 
   if (currentAccount?.pin === +inputLoginPin.value) {
@@ -285,8 +286,8 @@ btnTransfer.addEventListener("click", function (e) {
     receiverAcc.movements.push(amount);
 
     // add Transfer date
-    currentAccount.movements.push(new Date().toISOString());
-    receiverAcc.movements.push(new Date().toISOString());
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAcc.movementsDates.push(new Date().toISOString());
 
     // Update UI
     updateUI(currentAccount);
@@ -311,7 +312,7 @@ btnLoan.addEventListener("click", function (e) {
       currentAccount.movements.push(amount);
 
       // add Loan dates
-      currentAccount.movements.push(new Date().toISOString());
+      currentAccount.movementsDates.push(new Date().toISOString());
 
       // Update UI
       updateUI(currentAccount);
@@ -350,7 +351,6 @@ btnClose.addEventListener("click", function (e) {
 let sorted = false;
 btnSort.addEventListener("click", function (e) {
   e.preventDefault();
-  // displayMovements(currentAccount.movements, !sorted);
-  displayMovements(acc.movements, !sorted);
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted;
 });
