@@ -1,0 +1,23 @@
+{
+  "name": "bankist-course",
+  "version": "1.0.0",
+  "description": "Bankist Course",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir ./dist --no-scope-hoist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClintinH/Bankist-Course.git"
+  },
+  "author": "Clintin Herholdt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ClintinH/Bankist-Course/issues"
+  },
+  "homepage": "https://github.com/ClintinH/Bankist-Course#readme",
+  "dependencies": {
+    "parcel": "^2.6.2"
+  }
+}
